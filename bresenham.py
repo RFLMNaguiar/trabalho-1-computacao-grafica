@@ -1,4 +1,9 @@
-def bresenham(ponto_inicial, ponto_final):
+def bresenham(ponto_inicial:list, ponto_final:list)->list:
+    """
+    :param ponto_inicial: lista com dois elementos, coordenadas x1 e y1
+    :param ponto_final: lista com dois elementos, coordenadas x2 e y2
+    :return pixels: conjunto de pixels a serem pintados pelo algoritmo
+    """
     # REFLEXÃO:
     m = (ponto_final[1] - ponto_inicial[1]) / (ponto_final[0] - ponto_inicial[0])
 

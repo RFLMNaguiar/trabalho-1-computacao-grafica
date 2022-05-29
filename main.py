@@ -23,6 +23,7 @@ def desenhar_com_recorte(x_reta: int, y_reta: int, matriz: list, cor: int) -> No
     y_na_matriz, x_na_matriz = converter_coordenadas(x_na_reta, y_na_reta)
     if estah_nos_limites(x_reta, y_reta):
         matriz[x_na_matriz][y_na_matriz] = cor
+        grid.DesenharPixel(x_na_reta, y_na_reta, '#f00')
 
 
 def estah_nos_limites(x_reta: int, y_reta: int) -> bool:
