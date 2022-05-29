@@ -1,3 +1,5 @@
+import bresenham
+
 def pontos_bezier(grau_bezier: int, pontos_de_controle: list, t: float) -> list:
     """
     :param grau_bezier:
@@ -14,3 +16,6 @@ def pontos_bezier(grau_bezier: int, pontos_de_controle: list, t: float) -> list:
             pontos[i] = (1 - t) * pontos[i] + t * pontos[i + 1]  # interpolações lineares
 
     return pontos[0]
+
+def desenha_curva():
+    return None
