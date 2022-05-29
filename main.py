@@ -1,6 +1,7 @@
 import bresenham
 import circulo
 import elipse
+import curvas
 import grid
 import tkinter
 
@@ -77,8 +78,9 @@ while True:
     print("2 - Desenhar uma linha.")
     print("3 - Desenhar um círculo.")
     print("4 - Desenhar uma elipse.")
-    print("5 - Fazer uma transformação.")
-    print("6 - Trocar a cor do pincel.")
+    print("5 - Desenhar uma curva.")
+    print("6 - Fazer uma transformação.")
+    print("7 - Trocar a cor do pincel.")
     opcao = int(input("Opção:"))
 
     if opcao == 0:
@@ -140,7 +142,32 @@ while True:
             desenhar_com_recorte(x_na_reta, y_na_reta, matriz, cor_atual)
 
         print("Elipse desenhada com sucesso!")
+
     elif opcao == 5:
+        print("Você está desenhando uma curva.")
+        n = int(input("Digite o grau dessa curva:"))
+        pontos_de_controle = []
+        for i in range(n + 1):
+            ponto_de_controle = str(input(f"Digite as coordenenadas do {i+1}° ponto de controle")).split()
+            pontos_de_controle.append([int(ponto_de_controle[0]), int(ponto_de_controle[1])])
+
+        print("Desenhando a curva...")
+
+        t = 0.0  # Passos de Bezier
+        # 24 é o número de pontos para fazer a curva
+        while t < 1.0:
+            # print(t)
+            ponto_1 = curvas.bezier(n, pontos_de_controle, t)
+            ponto_2 = curvas.bezier(n, pontos_de_controle, t+(1 / 6))
+            t += (1 / 6)
+            pontos_da_reta = bresenham.bresenham(ponto_1, ponto_2)
+            for i in range(len(pontos_da_reta)):
+                x_na_reta, y_na_reta = pontos_da_reta[i][0], pontos_da_reta[i][1]
+                desenhar_com_recorte(x_na_reta, y_na_reta, matriz, cor_atual)
+
+        print("Curva desenhada com sucesso!")
+
+    elif opcao == 6:
         print("Você está fazendo uma transformação.")
         x1 = int(input("Digite x inicial do bounding box:"))
         y1 = int(input("Digite y inicial do bounding box:"))
@@ -211,7 +238,7 @@ while True:
         else:
             print("OPÇÃO INVÁLIDA, ESCOLHA OUTRA TRANSFORMAÇÃO.")
 
-    elif opcao == 6:
+    elif opcao == 7:
         print("Você está trocando a cor.")
         print("0 - Branco.")
         print("1 - Vermelho.")
