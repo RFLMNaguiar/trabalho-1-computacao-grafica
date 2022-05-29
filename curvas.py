@@ -47,3 +47,4 @@ while t < 1.0:
     ponto_2 = bezier(2, [[1, 1], [2, 4], [3, 9]], t + (1 / 6))
     print(ponto_1, ponto_2)
     t += (1 / 6)
+

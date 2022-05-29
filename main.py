@@ -2,6 +2,7 @@ import bresenham
 import circulo
 import elipse
 import curvas
+import preenchimento
 import grid
 import tkinter
 
@@ -80,7 +81,8 @@ while True:
     print("4 - Desenhar uma elipse.")
     print("5 - Desenhar uma curva.")
     print("6 - Fazer uma transformação.")
-    print("7 - Trocar a cor do pincel.")
+    print("7 - Fazer um preenchimento.")
+    print("8 - Trocar a cor do pincel.")
     opcao = int(input("Opção:"))
 
     if opcao == 0:
@@ -148,7 +150,7 @@ while True:
         n = int(input("Digite o grau dessa curva:"))
         pontos_de_controle = []
         for i in range(n + 1):
-            ponto_de_controle = str(input(f"Digite as coordenenadas do {i+1}° ponto de controle")).split()
+            ponto_de_controle = str(input(f"Digite as coordenenadas do {i + 1}° ponto de controle")).split()
             pontos_de_controle.append([int(ponto_de_controle[0]), int(ponto_de_controle[1])])
 
         print("Desenhando a curva...")
@@ -158,7 +160,7 @@ while True:
         while t < 1.0:
             # print(t)
             ponto_1 = curvas.bezier(n, pontos_de_controle, t)
-            ponto_2 = curvas.bezier(n, pontos_de_controle, t+(1 / 6))
+            ponto_2 = curvas.bezier(n, pontos_de_controle, t + (1 / 6))
             t += (1 / 6)
             pontos_da_reta = bresenham.bresenham(ponto_1, ponto_2)
             for i in range(len(pontos_da_reta)):
@@ -230,7 +232,6 @@ while True:
             delta_x = int(input("Digite a quantidade horizontal que você deseja alterar:"))
             delta_y = int(input("Digite a quantidade vertical que você deseja alterar:"))
 
-
         elif transformacao == 3:
             print("Você selecionou a escala.")
             graus = int(input("Digite quantos graus você deseja rotacionar:"))
@@ -239,6 +240,14 @@ while True:
             print("OPÇÃO INVÁLIDA, ESCOLHA OUTRA TRANSFORMAÇÃO.")
 
     elif opcao == 7:
+        print("Você escolheu o preenchimento.")
+        x = int(input("Digite o x do pixel onde você deseja começar o preenchimento."))
+        y = int(input("Digite o y do pixel onde você deseja começar o preenchimento."))
+        x_na_matriz, y_na_matriz = converter_coordenadas(x, y)
+        preenchimento.preenchimento_recursivo(x_na_matriz, y_na_matriz, matriz, cor_atual)
+        print("O preenchimento foi feito com sucesso!")
+
+    elif opcao == 8:
         print("Você está trocando a cor.")
         print("0 - Branco.")
         print("1 - Vermelho.")
