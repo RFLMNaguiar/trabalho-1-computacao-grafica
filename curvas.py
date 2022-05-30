@@ -23,7 +23,6 @@ def bezier(grau_bezier: int, pontos_de_controle: list, t: float) -> list:
             pontos = pontos.astype(int)
 
     pontos = pontos.tolist()
-    print(pontos[0])
 
     return pontos[0]
 
@@ -45,6 +44,5 @@ t = 0.0  # Passos de Bezier
 while t < 1.0:
     ponto_1 = bezier(2, [[1, 1], [2, 4], [3, 9]], t)
     ponto_2 = bezier(2, [[1, 1], [2, 4], [3, 9]], t + (1 / 6))
-    print(ponto_1, ponto_2)
     t += (1 / 6)
 

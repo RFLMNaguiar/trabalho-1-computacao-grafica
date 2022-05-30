@@ -25,7 +25,7 @@ def desenhar_com_recorte(x_reta: int, y_reta: int, matriz: list, cor: int) -> No
     y_na_matriz, x_na_matriz = converter_coordenadas(x_na_reta, y_na_reta)
     if estah_nos_limites(x_reta, y_reta):
         matriz[x_na_matriz][y_na_matriz] = cor
-        grid.DesenharPixel(x_na_reta, y_na_reta, '#f00')
+        #grid.DesenharPixel(x_na_reta, y_na_reta, '#f00')
 
 
 def estah_nos_limites(x_reta: int, y_reta: int) -> bool:
@@ -41,6 +41,12 @@ def converter_coordenadas(x_reta: int, y_reta: int) -> tuple[int, int]:
     return x_real, y_real
 
 
+def converter_coordenadas_para_reta(x_matriz: int, y_matriz: int) -> tuple[int, int]:
+    x_reta = x_matriz - 25
+    y_reta = 24 - y_matriz
+    return x_reta, y_reta
+
+
 def imprimir_matriz(matriz: list) -> None:
     for linha in range(len(matriz)):
         print()
@@ -50,16 +56,25 @@ def imprimir_matriz(matriz: list) -> None:
 
 
 def desenhar_a_matriz(matriz: list) -> None:
-    grid.DesenharPixel(x_na_reta, y_na_reta, "#000")
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            x_na_reta, y_na_reta = converter_coordenadas_para_reta(j, i)
+            grid.DesenharPixel(x_na_reta, y_na_reta, dicionario_cores_HEX[matriz[i][j]])
 
 
 matriz = []
-cor_atual = 1
+cor_atual = 4
 dicionario_cores = {0: "branco",
                     1: "vermelho",
                     2: "verde",
                     3: "azul",
                     4: "preto"}
+
+dicionario_cores_HEX = {0: "#FFF",
+                        1: "#F00",
+                        2: "#0F0",
+                        3: "#00F",
+                        4: "#000"}
 
 for i in range(int(grid.numeroPixels)):
     matriz.append([])
@@ -68,8 +83,8 @@ for i in range(int(grid.numeroPixels)):
 
 print("Bem-vindo ao trabalho prático 1!")
 print("Disciplina: Computação Gráfica")
-print("Aluno: Samuel Figueira Aguiar")
-print("Matrícula: 201904940010")
+print("Aluno: Samuel Figueira Aguiar e Lucas Nobre Barbosa")
+print("Matrícula: 201904940010 e 201904940011")
 
 while True:
     print(f"Cor atual: {dicionario_cores[cor_atual]}")

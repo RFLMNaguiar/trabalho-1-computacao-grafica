@@ -1,4 +1,4 @@
-def preenchimento_recursivo(x, y, matriz, cor, cor_selecionada=-1):
+def preenchimento_recursivo(x: int, y: int, matriz: list[list], cor: int, cor_selecionada=-1) -> None:
     if cor_selecionada == -1:
         cor_selecionada = matriz[x][y]
 
