@@ -18,7 +18,7 @@ def bresenham(ponto_inicial: list, ponto_final: list) -> list:
                 pixels.append([constante, i])
         return pixels
 
-    troca = ['NENHUMA']
+    troca = []
     if coeficiente_angular > 1 or coeficiente_angular < -1:
         ponto_inicial[0], ponto_inicial[1] = ponto_inicial[1], ponto_inicial[0]
         ponto_final[0], ponto_final[1] = ponto_final[1], ponto_final[0]
@@ -33,6 +33,7 @@ def bresenham(ponto_inicial: list, ponto_final: list) -> list:
     # BRESENHAM:
     x = ponto_inicial[0]
     y = ponto_inicial[1]
+    coeficiente_angular = (ponto_final[1] - ponto_inicial[1]) / (ponto_final[0] - ponto_inicial[0])
     erro = coeficiente_angular - 0.5
     pixels = [ponto_inicial]
 
@@ -56,8 +57,4 @@ def bresenham(ponto_inicial: list, ponto_final: list) -> list:
     if "XY" in troca:
         for i in range(len(pixels)):
             pixels[i] = [pixels[i][1], pixels[i][0]]
-
     return pixels
-
-
-print(bresenham([0, 0], [5, 10]))
