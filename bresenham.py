@@ -31,17 +31,18 @@ def bresenham(ponto_inicial: list, ponto_final: list) -> list:
         troca.append('Y')
 
     # BRESENHAM:
-    erro = coeficiente_angular - 0.5
+    x = ponto_inicial[0]
     y = ponto_inicial[1]
-
+    erro = coeficiente_angular - 0.5
     pixels = [ponto_inicial]
 
-    for i in range(ponto_inicial[0] + 1, ponto_final[0]):
-        if erro > 0:
-            erro = erro - 1
+    while x < ponto_final[0]:
+        if erro >= 0:
             y += 1
-        pixels.append([i, y])
+            erro = erro - 1
+        x = x + 1
         erro = erro + coeficiente_angular
+        pixels.append([x, y])
 
     pixels.append(ponto_final)
 
@@ -57,3 +58,6 @@ def bresenham(ponto_inicial: list, ponto_final: list) -> list:
             pixels[i] = [pixels[i][1], pixels[i][0]]
 
     return pixels
+
+
+print(bresenham([0, 0], [5, 10]))

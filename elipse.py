@@ -1,7 +1,3 @@
-import grid
-import tkinter
-
-
 def elipse(raio_horizontal, raio_vertical, x_do_centro, y_do_centro):
     raio_horizontal_ao_quadrado = raio_horizontal ** 2
     raio_vertical_ao_quadrado = raio_vertical ** 2

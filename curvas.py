@@ -1,5 +1,4 @@
 import numpy as np
-from math import ceil
 
 
 def bezier(grau_bezier: int, pontos_de_controle: list, t: float) -> list:
@@ -27,17 +26,6 @@ def bezier(grau_bezier: int, pontos_de_controle: list, t: float) -> list:
     return pontos[0]
 
 
-def desenha_curva(ponto_inicial: list, ponto_final: list) -> None:
-    return None
-
-
-# print(bezier(1, [[0, 0], [3, 2]], 0))
-# print(bezier(1, [[0, 0], [3, 2]], 0.5))
-# print(bezier(1, [[0, 0], [3, 2]], 1))
-
-# print(bezier(2, [[1, 1], [2, 4], [3, 9]], 0.0))
-# print(bezier(2, [[1, 1], [2, 4], [3, 9]], (1/24)))
-# print(bezier(2, [[1, 1], [2, 4], [3, 9]], 0.83))
 
 t = 0.0  # Passos de Bezier
 # 24 é o número de pontos para fazer a curva

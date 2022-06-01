@@ -25,7 +25,6 @@ def desenhar_com_recorte(x_reta: int, y_reta: int, matriz: list, cor: int) -> No
     y_na_matriz, x_na_matriz = converter_coordenadas(x_na_reta, y_na_reta)
     if estah_nos_limites(x_reta, y_reta):
         matriz[x_na_matriz][y_na_matriz] = cor
-        #grid.DesenharPixel(x_na_reta, y_na_reta, '#f00')
 
 
 def estah_nos_limites(x_reta: int, y_reta: int) -> bool:
@@ -112,7 +111,7 @@ while True:
 
         print("Desenhando um ponto...")
         desenhar_com_recorte(x_na_reta, y_na_reta, matriz, cor_atual)
-        print("Reta desenhado com sucesso!")
+        print("Ponto desenhado com sucesso!")
 
     elif opcao == 2:
         print("Você está desenhando uma reta (bresenham).")
@@ -148,8 +147,8 @@ while True:
         print("Você está desenhando uma elipse.")
         x = int(input("Digite a coordenada x do centro: "))
         y = int(input("Digite a coordenada y do centro: "))
-        rx = int(input("Digite o raio vertical da elipse"))
-        ry = int(input("Digite o raio vertical da elipse"))
+        rx = int(input("Digite o raio horizontal da elipse: "))
+        ry = int(input("Digite o raio vertical da elipse: "))
 
         print("Desenhando a elipse...")
 
@@ -195,6 +194,9 @@ while True:
         x1, y1 = colocar_nos_limites(x1, y1)
         x2, y2 = colocar_nos_limites(x2, y2)
 
+        x1, y1 = converter_coordenadas(x1, y1)
+        x2, y2 = converter_coordenadas(x2, y2)
+
         # Forma o bouding box corretamente para a iteração.
         coordenadas_x = [x1, x2]
         coordenadas_y = [y1, y2]
@@ -218,13 +220,14 @@ while True:
                         for j in range(x_min, x_max + 1):
                             if j - delta_x < len(matriz[i]):
                                 matriz[i][j] = matriz[i][j - delta_x]
+                            matriz[i][j - delta_x] = 0
 
                 if delta_x > 0:
                     for i in range(y_min, y_max + 1):
                         for j in range(x_max, x_min - 1, -1):
                             if j + delta_x < len(matriz[i]):
                                 matriz[i][j + delta_x] = matriz[i][j]
-                                matriz[i][j] = 0
+                            matriz[i][j] = 0
 
             elif vertical_ou_horizontal == "V":
                 delta_y = int(input("Digite a quantidade vertical que você deseja mover:"))
@@ -234,13 +237,14 @@ while True:
                         for j in range(x_min, x_max + 1):
                             if i - delta_y >= 0:
                                 matriz[i - delta_y][j] = matriz[i][j]
-                                matriz[i][j] = 0
+                            matriz[i][j] = 0
+
                 if delta_y < 0:
                     for i in range(y_max, y_min, -1):
                         for j in range(x_min, x_max + 1):
                             if i + delta_y <= len(matriz[i]):
                                 matriz[i][j] = matriz[i + delta_y][j]
-                                matriz[i + delta_y][j] = 0
+                            matriz[i + delta_y][j] = 0
 
         elif transformacao == 2:
             print("Você selecionou a escala.")
