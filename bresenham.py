@@ -1,5 +1,6 @@
 def bresenham(ponto_inicial: list, ponto_final: list) -> list:
     """
+    Função que cria os pontos discretos de uma reta.
     :param ponto_inicial: lista com dois elementos, coordenadas x1 e y1
     :param ponto_final: lista com dois elementos, coordenadas x2 e y2
     :return pixels: conjunto de pixels a serem pintados pelo algoritmo

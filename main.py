@@ -8,6 +8,11 @@ import tkinter
 
 
 def colocar_nos_limites(x: int, y: int) -> tuple[int, int]:
+    """
+    :param x: valor x na reta.
+    :param y: valor y na reta.
+    :return: valores x e y dentro dos limites do programa.
+    """
     if x > 24:
         x = 24
     elif x < -25:
@@ -22,12 +27,24 @@ def colocar_nos_limites(x: int, y: int) -> tuple[int, int]:
 
 
 def desenhar_com_recorte(x_reta: int, y_reta: int, matriz: list, cor: int) -> None:
+    """
+    :param x_reta: valor x na reta, entre -25 e 24.
+    :param y_reta: valor y na reta, entre -25 e 24.
+    :param matriz: matriz que armazena os dados dos pixels.
+    :param cor: cor que será utilizada para desenhar.
+    :return: nenhum.
+    """
     y_na_matriz, x_na_matriz = converter_coordenadas(x_na_reta, y_na_reta)
     if estah_nos_limites(x_reta, y_reta):
         matriz[x_na_matriz][y_na_matriz] = cor
 
 
 def estah_nos_limites(x_reta: int, y_reta: int) -> bool:
+    """
+    :param x_reta: valor x na reta, entre -25 e 24.
+    :param y_reta: valor y na reta, entre -25 e 24.
+    :return: booleano dizendo se os pontos x e y estão dentro dos limites da reta.
+    """
     if (-25 <= x_reta <= 24) and (-25 <= y_reta <= 24):
         return True
     else:
@@ -35,23 +52,25 @@ def estah_nos_limites(x_reta: int, y_reta: int) -> bool:
 
 
 def converter_coordenadas(x_reta: int, y_reta: int) -> tuple[int, int]:
+    """
+    :param x_reta: valor x na reta, entre -25 e 24.
+    :param y_reta: valor y na reta, entre -25 e 24.
+    :return: x e y para serem utilizados na representação matricial.
+    """
     x_real = x_reta + 25
     y_real = 24 - y_reta
     return x_real, y_real
 
 
 def converter_coordenadas_para_reta(x_matriz: int, y_matriz: int) -> tuple[int, int]:
+    """
+    :param x_matriz: valor x na matriz, entre 0 e 49.
+    :param y_matriz: valor y na matriz, entre 0 e 49.
+    :return: x e y para serem utilizados na representação na reta.
+    """
     x_reta = x_matriz - 25
     y_reta = 24 - y_matriz
     return x_reta, y_reta
-
-
-def imprimir_matriz(matriz: list) -> None:
-    for linha in range(len(matriz)):
-        print()
-        for coluna in range(len(matriz[linha])):
-            print(matriz[linha][coluna], end="")
-    print()
 
 
 def desenhar_a_matriz(matriz: list) -> None:
@@ -212,6 +231,7 @@ while True:
         if transformacao == 1:
             print("Você selecionou a translação.")
             vertical_ou_horizontal = input("(V)ertical ou (H)orizontal?")
+            vertical_ou_horizontal = vertical_ou_horizontal.upper()
             if vertical_ou_horizontal == "H":
                 delta_x = int(input("Digite a quantidade horizontal que você deseja mover:"))
 

@@ -1,4 +1,12 @@
-def elipse(raio_horizontal, raio_vertical, x_do_centro, y_do_centro):
+def elipse(raio_horizontal: int, raio_vertical: int, x_do_centro: int, y_do_centro: int) -> list:
+    """
+    Função que cria os pontos discretos de uma elipse.
+    :param raio_horizontal: raio horizontal da elipse.
+    :param raio_vertical:  raio vertical da elipse.
+    :param x_do_centro: posição horizontal do centro do circulo.
+    :param y_do_centro: posição vertical do centro do círculo.
+    :return: lista com pontos da elipse.
+    """
     raio_horizontal_ao_quadrado = raio_horizontal ** 2
     raio_vertical_ao_quadrado = raio_vertical ** 2
 

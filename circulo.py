@@ -1,4 +1,11 @@
-def circulo(x_do_centro, y_do_centro, raio):
+def circulo(x_do_centro: int, y_do_centro: int, raio: int) -> list:
+    """
+    Função que cria os pontos discretos de um círculo.
+    :param x_do_centro: posição horizontal do centro do circulo.
+    :param y_do_centro: posição vertical do centro do círculo.
+    :param raio: raio do círculo.
+    :return: lista com pontos do círculo.
+    """
     x = 0
     y = raio
     erro = -raio
